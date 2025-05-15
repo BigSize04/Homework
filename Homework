@@ -1,0 +1,198 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+   // Задача 1
+    double a, b, x;
+    cin >> a >> b;
+    if (a > b)
+        x = b - 5 * a;
+    else if (a == b)
+        x = (5 - b) / a;
+    else
+        x = (a - 5) / b;
+    cout << "X = " << x << endl;
+
+    // Задача 2
+    double x1, y1, x2, y2;
+    cin >> x1 >> y1 >> x2 >> y2;
+    if (x1 == x2)
+        cout << "Паралельна осі ординат\n";
+    else if (y1 == y2)
+        cout << "Паралельна осі абсцис\n";
+    else
+        cout << "Не паралельна координатним осям\n";
+
+    // Задача 3
+    int qty;
+    double price, total, discount = 0;
+    cin >> qty >> price;
+    total = qty * price;
+    if (total >= 300)
+        discount = 0.07;
+    else if (total >= 200)
+        discount = 0.05;
+    else if (total >= 100)
+        discount = 0.03;
+    cout << "Ціна зі знижкою: " << total * (1 - discount) << endl;
+
+    // Задача 4
+    double num;
+    cin >> num;
+    if ((int)num == num)
+        cout << "Без десяткової частини\n";
+    else
+        cout << "Є десяткова частина\n";
+
+    // Задача 5
+    int day;
+    cin >> day;
+    switch (day) {
+    case 1: cout << "Понеділок\n"; break;
+    case 2: cout << "Вівторок\n"; break;
+    case 3: cout << "Середа\n"; break;
+    case 4: cout << "Четвер\n"; break;
+    case 5: cout << "П’ятниця\n"; break;
+    case 6: cout << "Субота\n"; break;
+    case 7: cout << "Неділя\n"; break;
+    default: cout << "Невірний номер дня\n";
+    }
+
+    // Задача 6
+    double x, y;
+    cin >> x >> y;
+    if (x == 0 && y == 0)
+        cout << "Початок координат\n";
+    else if (x == 0)
+        cout << "На осі Y\n";
+    else if (y == 0)
+        cout << "На осі X\n";
+    else if (x > 0 && y > 0)
+        cout << "I чверть\n";
+    else if (x < 0 && y > 0)
+        cout << "II чверть\n";
+    else if (x < 0 && y < 0)
+        cout << "III чверть\n";
+    else
+        cout << "IV чверть\n";
+
+    // Задача 7
+    double uah, result;
+    int currency;
+    cout << "Введіть суму в грн: ";
+    cin >> uah;
+    cout << "Оберіть валюту (1 - євро, 2 - долар, 3 - рубль): ";
+    cin >> currency;
+    switch (currency) {
+    case 1: result = uah / 42.0; break;
+    case 2: result = uah / 38.0; break;
+    case 3: result = uah / 0.42; break;
+    default: cout << "Невідома валюта\n"; return 0;
+    }
+    cout << "Результат: " << result << endl;
+
+    // Задача 8
+    int dayD, month, year, hour, min;
+    cin >> dayD >> month >> year >> hour >> min;
+    bool dateValid = (dayD >= 1 && dayD <= 31 && month >= 1 && month <= 12 && year > 0);
+    bool timeValid = (hour >= 0 && hour < 24 && min >= 0 && min < 60);
+    if (dateValid && timeValid)
+        cout << "Коректна дата і час\n";
+    else
+        cout << "Некоректне введення\n";
+
+    // Задача 9
+    string ticket;
+    cin >> ticket;
+    if (ticket.length() == 6) {
+        int sum1 = ticket[0] + ticket[1] + ticket[2];
+        int sum2 = ticket[3] + ticket[4] + ticket[5];
+        if (sum1 == sum2)
+            cout << "Щасливий квиток\n";
+        else
+            cout << "Не щасливий квиток\n";
+    }
+    else cout << "Невірна довжина квитка\n";
+
+    // Задача 10
+    int age;
+    cin >> age;
+    if (age >= 60)
+        cout << "Пора на пенсію\n";
+    else
+        cout << "Ще рано\n";
+
+    // Задача 11
+    int card;
+    cin >> card;
+    string suits[] = { "Піки", "Трефи", "Бубни", "Черви" };
+    string values[] = { "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз" };
+    if (card >= 0 && card <= 35) {
+        cout << values[card % 9] << " " << suits[card / 9] << endl;
+    }
+    else cout << "Невірний номер карти\n";
+
+    // Задача 12
+    int h, m;
+    cin >> h >> m;
+    if (h >= 5 && h < 12)
+        cout << "Доброго ранку\n";
+    else if (h >= 12 && h < 18)
+        cout << "Добрий день\n";
+    else if (h >= 18 && h < 23)
+        cout << "Добрий вечір\n";
+    else
+        cout << "Добраніч\n";
+
+    // Задача 13
+    int height, weight;
+    cin >> height >> weight;
+    int ideal = height - 110;
+    if (weight > ideal)
+        cout << "Скиньте " << weight - ideal << " кг\n";
+    else if (weight < ideal)
+        cout << "Наберіть " << ideal - weight << " кг\n";
+    else
+        cout << "Ваша вага ідеальна\n";
+
+    // Задача 14
+    int d, mth, y;
+    cin >> d >> mth >> y;
+    d++;
+    if ((mth == 2 && d > 28) || (mth == 4 || mth == 6 || mth == 9 || mth == 11) && d > 30 || d > 31) {
+        d = 1;
+        mth++;
+        if (mth > 12) {
+            mth = 1;
+            y++;
+        }
+    }
+    cout << "Наступна дата: " << d << "." << mth << "." << y << endl;
+
+    // Задача 15
+    int n;
+    cin >> n;
+    bool allPrime = true;
+    int primes[] = { 2, 3, 5, 7 };
+    while (n > 0) {
+        int digit = n % 10;
+        bool isPrime = false;
+        for (int p : primes) if (digit == p) isPrime = true;
+        if (!isPrime) {
+            allPrime = false;
+            break;
+        }
+        n /= 10;
+    }
+    cout << (allPrime ? "Усі цифри прості" : "Є не прості цифри") << endl;
+
+    // Задача 16
+    int yearCheck;
+    cin >> yearCheck;
+    if ((yearCheck % 4 == 0 && yearCheck % 100 != 0) || (yearCheck % 400 == 0))
+        cout << "Високосний рік\n";
+    else
+        cout << "Не високосний рік\n";
+
+    return 0;
+}
